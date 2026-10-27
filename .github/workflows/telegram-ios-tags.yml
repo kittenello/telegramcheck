@@ -1,0 +1,30 @@
+name: telegram ios tag monitor
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'режим запуска'
+        type: choice
+        options:
+          - test
+          - check
+        default: test
+permissions:
+  contents: write
+concurrency:
+  group: telegram-ios-tag-monitor
+  cancel-in-progress: false
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: check telegram ios tags
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          MODE: ${{ inputs.mode || 'check' }}
+        run: python3 monitor.py
