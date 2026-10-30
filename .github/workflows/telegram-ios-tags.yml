@@ -1,7 +1,7 @@
 name: telegram ios tag monitor
 on:
   schedule:
-    - cron: '17 * * * *'
+    - cron: '*/5 * * * *'
   workflow_dispatch:
     inputs:
       mode:
