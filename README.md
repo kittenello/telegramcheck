@@ -1,6 +1,6 @@
 # telegram ios tag monitor
 
-проверяет теги telegram ios каждый час и отправляет новые в telegram.
+проверяет теги telegram ios каждые 5 минут и отправляет новые в telegram.
 
 для работы добавьте в secrets → actions два секрета: `TELEGRAM_BOT_TOKEN` и `TELEGRAM_CHAT_ID`. бот должен быть администратором канала и иметь право публиковать сообщения.
 
